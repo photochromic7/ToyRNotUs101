@@ -18,13 +18,13 @@ SearchItemyByAgeAndGender
     Select From List By Value    ${Gender}
     Click Element    ${btnSearch}
     # Result
-    Wait Until Page Contains     ${ExpectedItemData['ToyId']}
-    Wait Until Page Contains     ${ExpectedItemData['ToyName']}
-    Wait Until Page Contains     ${ExpectedItemData['Gender']}
-    Wait Until Page Contains     ${ExpectedItemData['Age']}
-    Wait Until Page Contains     ${ExpectedItemData['Price']}
-    Wait Until Page Contains     ${ExpectedItemData['Avaliable']}
-    Wait Until Page Contains     ${ExpectedItemData['Brand']}
+    Wait Until Page Contains    ${ExpectedItemData['ToyId']}
+    Wait Until Page Contains    ${ExpectedItemData['ToyName']}
+    Wait Until Page Contains    ${ExpectedItemData['Gender']}
+    Wait Until Page Contains    ${ExpectedItemData['Age']}
+    Wait Until Page Contains    ${ExpectedItemData['Price']}
+    Wait Until Page Contains    ${ExpectedItemData['Avaliable']}
+    Wait Until Page Contains    ${ExpectedItemData['Brand']}
 
 ViewDetailItem
     [Arguments]    ${ExpectedItem}
@@ -57,9 +57,30 @@ VerifyPrice
     Element Text Should Be    ${lblTotal}    ${Total_amt}
 
 InputAddress
-    [Arguments]    ${Address1}    ${Address2}
+    [Arguments]    ${ShippingAddress}
+    Wait Until Element Is Visible    ${txtFullName}
+    Wait Until Element Is Visible    ${btnDeliver}
+    Input Text    ${txtFullName}    ${ShippingAddress['FullName']}
+    Input Text    ${txtAddress1}    ${ShippingAddress['Address1']}
+    Input Text    ${txtAddress2}    ${ShippingAddress['Address2]}
+    Input Text    ${txtCity}    ${ShippingAddress['City']}
+    Input Text    ${txtProvince}    ${ShippingAddress['Province']}
+    Input Text    ${txtPostCode}    ${ShippingAddress['PostCode']}
 
 SubmitAddress
+    Click Element    ${btnDeliver}
 
 VerifyForm
-    [Arguments]    ${ItemData}    ${Address1}    ${Address2}
+    [Arguments]    ${ExpectedItem}    ${ShippingAddress}
+    Wait Until Element Is Visible    ${lblSumaryProduct}
+    Wait Until Element Is Visible    ${lblSummaryShipping}
+    Wait Until Page Contains    ${ExpectedItem['ToyName']}
+    Wait Until Page Contains    ${ExpectedItem['Gender']}
+    Wait Until Page Contains    ${ExpectedItem['Age']}
+    Wait Until Page Contains    ${ExpectedItem['Price']}
+    Wait Until Page Contains    ${ShippingAddress['FullName']}
+    Wait Until Page Contains    ${ShippingAddress['Address1']}
+    Wait Until Page Contains    ${ShippingAddress['Address2]}
+    Wait Until Page Contains    ${ShippingAddress['City']}
+    Wait Until Page Contains    ${ShippingAddress['Province']}
+    Wait Until Page Contains    ${ShippingAddress['PostCode']}

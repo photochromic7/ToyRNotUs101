@@ -1,5 +1,5 @@
 *** Settings ***
-Test Setup        Open Browser
+Test Setup        Open Browser    ${URL}
 Test Teardown     Close Browser
 Resource          ../Resource/ExpectedVariables_TestCase_01.txt
 Resource          ../Resource/GlobalVariables.txt
@@ -12,6 +12,6 @@ Resource          ../Resource/UserKeywords.txt
     ViewDetailItem    &{ExpectedItemData}
     SelectQuality    ${text3}
     VerifyPrice    &{ExpectedItemData['Price']}    ${text3}
-    InputAddress    @{Address1}    @{Address2}
+    InputAddress    &{ShippingAddress}
     SubmitAddress
-    VerifyForm    &{ExpectedItemData}    @{Address1}    @{Address2}
+    VerifyForm    &{ExpectedItemData}    &{ShippingAddress}
