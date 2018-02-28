@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/toy")
-public class ToyController  extends HttpServlet {
+@WebServlet("/shipping")
+public class ShippingController  extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        response.setContentType("text/html;charset=UTF-8");
@@ -24,7 +24,7 @@ public class ToyController  extends HttpServlet {
        // request.setAttribute("message", toy.getName());
         //request.setAttribute("message", "Hello from DB");
         
-        getServletContext().getRequestDispatcher("/productDetail.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/shippingAddress.jsp").forward(request, response);
         
     }
 

@@ -4,9 +4,25 @@
         <servlet-name>Toy</servlet-name>
         <servlet-class>com.project.controller.ToyController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShippingController</servlet-name>
+        <servlet-class>com.project.controller.ShippingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ThankyouController</servlet-name>
+        <servlet-class>com.project.controller.ThankyouController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Toy</servlet-name>
-        <url-pattern>/search</url-pattern>
+        <url-pattern>/productDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShippingController</servlet-name>
+        <url-pattern>/shippingAddress</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ThankyouController</servlet-name>
+        <url-pattern>/ThankyouController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
