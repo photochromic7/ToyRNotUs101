@@ -1,6 +1,6 @@
 <%-- 
     Document   : search
-    Created on : Feb 28, 2018, 2:58:32 PM
+    Created on : Feb 28, 2018, 3:28:17 PM
     Author     : CHANINATH
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Search</h1>
     </body>
 </html>
