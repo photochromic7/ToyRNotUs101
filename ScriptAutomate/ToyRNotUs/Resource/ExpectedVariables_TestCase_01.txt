@@ -1,0 +1,3 @@
+*** Variables ***
+&{ExpectedItemData}    ToyId=2    ToyName=43 Piece dinner Set    Gender=Female    Age=3_to_5    Price=12.95    Availability=InStock    Brand=CoolKidz
+...               Img=

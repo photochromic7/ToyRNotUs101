@@ -1,0 +1,65 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          Element_Id.txt
+
+*** Keywords ***
+SearchItemyByAgeAndGender
+    [Arguments]    ${Age}    ${Gender}    ${ExpectedItemData}
+    Wait Until Element Is Visible    ${ddlAge}
+    Wait Until Element Is Visible    ${ddlGender}
+    Wait Until Element Is Visible    ${btnSearch}
+    # select Age
+    Click Element    ${ddlAge}
+    Wait Until Element Is Visible    ${tblList}
+    Select From List By Value    ${Age}
+    # select Gender
+    Click Element    ${ddlGender}
+    Wait Until Element Is Visible    ${tblList}
+    Select From List By Value    ${Gender}
+    Click Element    ${btnSearch}
+    # Result
+    Wait Until Page Contains     ${ExpectedItemData['ToyId']}
+    Wait Until Page Contains     ${ExpectedItemData['ToyName']}
+    Wait Until Page Contains     ${ExpectedItemData['Gender']}
+    Wait Until Page Contains     ${ExpectedItemData['Age']}
+    Wait Until Page Contains     ${ExpectedItemData['Price']}
+    Wait Until Page Contains     ${ExpectedItemData['Avaliable']}
+    Wait Until Page Contains     ${ExpectedItemData['Brand']}
+
+ViewDetailItem
+    [Arguments]    ${ExpectedItem}
+    Wait Until Page Contains Element    ${ImgToyPicture}
+    Element Should Be Visible    ${ddlQuantity}
+    Element Should Be Visible    ${lblSubTotal}
+    Element Should Be Visible    ${btnProcess}
+    Element Text Should Be    ${lblBrand}    ${ExpectedItem['ToyName']}
+    Element Text Should Be    ${lblGender}    ${ExpectedItem['Gender']}
+    Element Text Should Be    ${lblAge}    ${ExpectedItem['Age']}
+    Element Text Should Be    ${lblPrice}    ${ExpectedItem['Price']}
+
+SelectQuality
+    [Arguments]    ${Quality}
+    Click Element    ${ddlQuantity}
+    Select From List By Value    ${Quality}
+
+SelectItem
+    [Arguments]    ${ExpectedItem}
+    Click Element    //td[text()='${ExpectedItem['ToyName']}']
+
+VerifyPrice
+    [Arguments]    ${Quality}    ${Price}
+    ${Price}    Convert To Number    ${Price}
+    ${Quality}    Convert To Number    ${Quality}
+    ${SubTotalPrice}    Evaluate    ${Price} * ${Quality}
+    ${ShippingFee}    Get Text    ${lblShippingFee}
+    ${ShippingFee}    Convert To Number    Convert To Number
+    ${Total_amt}    Evaluate    ${ShippingFee} + ${SubTotalPrice}
+    Element Text Should Be    ${lblTotal}    ${Total_amt}
+
+InputAddress
+    [Arguments]    ${Address1}    ${Address2}
+
+SubmitAddress
+
+VerifyForm
+    [Arguments]    ${ItemData}    ${Address1}    ${Address2}
