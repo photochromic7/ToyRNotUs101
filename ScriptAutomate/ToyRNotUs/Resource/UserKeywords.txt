@@ -40,7 +40,7 @@ ViewDetailItem
 SelectQuality
     [Arguments]    ${Quality}
     Click Element    ${ddlQuantity}
-    Select From List By Value    ${Quality}
+    Select From List By Value    ${tblList}     ${Quality}
 
 SelectItem
     [Arguments]    ${ExpectedItem}
